@@ -1,0 +1,50 @@
+.hover:hover {
+  cursor: pointer;
+  background-color: papayawhip;
+}
+
+.file-name,
+.directory-name {
+  line-height: 1.5em;
+}
+
+.file-name::before {
+  content: "📃";
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.2em;
+}
+
+.directory-inner {
+  margin-left: 0.5em;
+}
+body {
+  font-family: "Courier New", Courier, monospace;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.textarea {
+  flex: 1;
+  font-family: "Courier New", Courier, monospace;
+  outline: none;
+  font-size: 100%;
+  border: none;
+  border-left: 1px solid #333;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
