@@ -1,13 +1,13 @@
 {
   "name": "parcel-plugin-static-zip",
   "version": "0.0.4",
-  "description": "",
+  "description": "Provide archived local directory in the static build",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Artem Tyurin <artem.tyurin@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "archiver": "^3.0.0",
     "shelljs": "^0.8.2"

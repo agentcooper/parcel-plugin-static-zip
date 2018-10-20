@@ -1,8 +1,6 @@
 {
-  "name": "parcel-plugin-test",
   "private": true,
   "version": "0.0.4",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "browserfs": "^1.4.3",
@@ -33,6 +31,6 @@
       }
     }
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Artem Tyurin <artem.tyurin@gmail.com>",
+  "license": "MIT"
 }
