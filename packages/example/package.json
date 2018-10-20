@@ -11,12 +11,15 @@
     "react-dom": "^16.5.2"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "parcel-bundler": "^1.10.3"
   },
   "scripts": {
     "clean": "rm -rf dist && rm -rf .cache",
     "start": "npm run clean && parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "parcel build index.html --public-url=./",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && gh-pages -d ./dist"
   },
   "parcel-plugin-static-zip": {
     "self.zip": {

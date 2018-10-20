@@ -55,7 +55,7 @@ function directoryTree(fs, path, level = 0) {
   };
 }
 
-Promise.all([fetchZIP("/self.zip")])
+Promise.all([fetchZIP("./self.zip")])
   .then(([self]) => configureFS(self))
   .then(fs => {
     const tree = directoryTree(fs, "/");
