@@ -8,19 +8,24 @@ import { basename, join } from "path";
 
 import "./style.css";
 
-function configureFS(arrayBuffer1) {
+function configureFS(config) {
+  const options = Object.entries(config).reduce((acc, [key, value]) => {
+    return {
+      ...acc,
+      [key]: {
+        fs: "ZipFS",
+        options: {
+          zipData: Buffer.from(value),
+        },
+      },
+    };
+  }, {});
+
   return new Promise((resolve, reject) => {
     configure(
       {
         fs: "MountableFileSystem",
-        options: {
-          "/": {
-            fs: "ZipFS",
-            options: {
-              zipData: Buffer.from(arrayBuffer1),
-            },
-          },
-        },
+        options,
       },
       e => {
         if (e) {
@@ -56,7 +61,7 @@ function directoryTree(fs, path, level = 0) {
 }
 
 Promise.all([fetchZIP("./self.zip")])
-  .then(([self]) => configureFS(self))
+  .then(([self]) => configureFS({ "/": self }))
   .then(fs => {
     const tree = directoryTree(fs, "/");
 
