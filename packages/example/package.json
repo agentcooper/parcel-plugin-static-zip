@@ -1,11 +1,11 @@
 {
   "name": "parcel-plugin-static-zip-example",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "index.js",
   "dependencies": {
     "browserfs": "^1.4.3",
-    "parcel-plugin-static-zip": "^0.0.5",
+    "parcel-plugin-static-zip": "^0.0.6",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
