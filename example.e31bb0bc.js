@@ -1,26 +1,3 @@
-/**
-* MIT License
-*
-* Copyright (c) 2018 Artem Tyurin
-* 
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-* 
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-* 
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 // modules are defined as an array
 // [ module function, map of requires ]
 //
@@ -53156,6 +53133,10 @@ require("./style.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -53164,18 +53145,23 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function configureFS(arrayBuffer1) {
+function configureFS(config) {
+  var options = Object.entries(config).reduce(function (acc, _ref) {
+    var _ref2 = _slicedToArray(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+
+    return _objectSpread({}, acc, _defineProperty({}, key, {
+      fs: "ZipFS",
+      options: {
+        zipData: Buffer.from(value)
+      }
+    }));
+  }, {});
   return new Promise(function (resolve, reject) {
     (0, _browserfs.configure)({
       fs: "MountableFileSystem",
-      options: {
-        "/": {
-          fs: "ZipFS",
-          options: {
-            zipData: Buffer.from(arrayBuffer1)
-          }
-        }
-      }
+      options: options
     }, function (e) {
       if (e) {
         return reject(e);
@@ -53213,11 +53199,13 @@ function directoryTree(fs, path) {
   };
 }
 
-Promise.all([fetchZIP("/self.zip")]).then(function (_ref) {
-  var _ref2 = _slicedToArray(_ref, 1),
-      self = _ref2[0];
+Promise.all([fetchZIP("./self.zip")]).then(function (_ref3) {
+  var _ref4 = _slicedToArray(_ref3, 1),
+      self = _ref4[0];
 
-  return configureFS(self);
+  return configureFS({
+    "/": self
+  });
 }).then(function (fs) {
   var tree = directoryTree(fs, "/");
   ReactDOM.render(React.createElement(_App.App, {
@@ -53254,7 +53242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64242" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50443" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
