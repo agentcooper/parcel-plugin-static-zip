@@ -1,12 +1,12 @@
 {
   "name": "parcel-plugin-test",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "dependencies": {
     "browserfs": "^1.4.3",
-    "parcel-plugin-static-zip": "^0.0.2",
+    "parcel-plugin-static-zip": "^0.0.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
