@@ -3,7 +3,8 @@
   "scripts": {
     "clean": "lerna clean && lerna run clean",
     "bootstrap": "lerna bootstrap",
-    "start": "(cd ./packages/example && npm run start)"
+    "start": "(cd ./packages/example && npm run start)",
+    "deploy": "(cd ./packages/example && npm run deploy)"
   },
   "devDependencies": {
     "lerna": "^3.4.3"
