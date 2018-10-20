@@ -1,0 +1,35 @@
+{
+  "name": "parcel-plugin-test",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "browserfs": "^1.4.3",
+    "parcel-plugin-static-zip": "0.0.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.10.3"
+  },
+  "scripts": {
+    "clean": "rm -rf dist && rm -rf .cache",
+    "start": "npm run clean && parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "parcel-plugin-static-zip": {
+    "self.zip": {
+      "glob": "**",
+      "options": {
+        "cwd": "../../",
+        "ignore": [
+          "**/node_modules/**",
+          "**/dist/**"
+        ]
+      }
+    }
+  },
+  "author": "",
+  "license": "ISC"
+}

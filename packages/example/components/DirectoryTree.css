@@ -1,0 +1,20 @@
+.hover:hover {
+  cursor: pointer;
+  background-color: papayawhip;
+}
+
+.file-name,
+.directory-name {
+  line-height: 1.5em;
+}
+
+.file-name::before {
+  content: "📃";
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.2em;
+}
+
+.directory-inner {
+  margin-left: 0.5em;
+}

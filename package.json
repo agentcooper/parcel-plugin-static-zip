@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "clean": "lerna clean && lerna run clean",
+    "bootstrap": "lerna bootstrap",
+    "start": "(cd ./packages/example && npm run start)"
+  },
+  "devDependencies": {
+    "lerna": "^3.4.3"
+  }
+}
