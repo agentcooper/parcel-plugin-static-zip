@@ -1,10 +1,10 @@
 {
   "private": true,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "dependencies": {
     "browserfs": "^1.4.3",
-    "parcel-plugin-static-zip": "^0.0.4",
+    "parcel-plugin-static-zip": "^0.0.5",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
