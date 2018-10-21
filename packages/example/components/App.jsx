@@ -3,6 +3,11 @@ import * as React from "react";
 import { DirectoryTree } from "./DirectoryTree";
 import { updateTree } from "../tree";
 
+const toggle = tree => ({
+  ...tree,
+  toggled: !tree.toggled
+});
+
 export class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +31,9 @@ export class App extends React.Component {
               this.setState({ source: readFile(file.path) });
             }}
             onDirectoryClick={path =>
-              this.setState({ tree: updateTree(path, tree) })
+              this.setState({
+                tree: updateTree(tree, path, toggle)
+              })
             }
           />
         </div>

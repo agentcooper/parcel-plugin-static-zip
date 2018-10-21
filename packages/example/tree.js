@@ -19,25 +19,28 @@ export function directoryTree(fs, path, level = 0) {
 }
 
 function splitPath(path) {
-  if (path === "/") return [];
-  if (typeof path === "string") return path.slice(1).split("/");
-  return path;
+  if (path === "/") {
+    return [];
+  }
+  return path.slice(1).split("/");
 }
 
-export function updateTree(path, tree) {
-  const pathArr = splitPath(path);
-
+function updateTreeHelper(tree, pathArr, callback) {
   if (pathArr.length < 1) {
-    return { ...tree, toggled: !tree.toggled };
+    return callback(tree);
   }
 
   const [first, ...rest] = pathArr;
-  const targetChild = tree.children.find(child => child.name === first);
 
   return {
     ...tree,
     children: tree.children.map(
-      child => (child.name === first ? updateTree(rest, targetChild) : child)
+      child =>
+        child.name === first ? updateTreeHelper(child, rest, callback) : child
     )
   };
+}
+
+export function updateTree(tree, path, callback) {
+  return updateTreeHelper(tree, splitPath(path), callback);
 }
