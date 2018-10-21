@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 import { App } from "./components/App";
 
 import { configure, BFSRequire } from "browserfs";
-import { basename, join } from "path";
+import { directoryTree } from "./tree";
 
 import "./style.css";
 
@@ -42,24 +42,6 @@ function configureFS(config) {
 
 function fetchZIP(url) {
   return fetch(url).then(res => res.arrayBuffer());
-}
-
-function directoryTree(fs, path, level = 0) {
-  return {
-    path,
-    level,
-    name: basename(path) || ".",
-    toggled: level < 2,
-    children: fs.readdirSync(path).map(fileName => {
-      const filePath = join(path, fileName);
-
-      if (fs.lstatSync(filePath).isDirectory()) {
-        return directoryTree(fs, filePath, level + 1);
-      }
-
-      return { name: fileName, path: filePath, level: level + 1 };
-    })
-  };
 }
 
 Promise.all([fetchZIP("./self.zip")])

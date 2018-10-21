@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { DirectoryTree } from "./DirectoryTree";
+import { updateTree } from "../tree";
 
 export class App extends React.Component {
   constructor(props) {
@@ -9,25 +10,6 @@ export class App extends React.Component {
       source: "",
       tree: this.props.tree
     };
-  }
-
-  updateTree(path, tree) {
-    if (path === "/" || path === "") {
-      return { ...tree, toggled: !tree.toggled };
-    }
-
-    console.log(path);
-
-    const target = path.split("/")[1];
-    const targetChild = tree.children.find(child => child.name === target);
-    const nextPath = path.slice(target.length + 1);
-
-    const newChildren = tree.children.map(
-      child =>
-        child.name === target ? this.updateTree(nextPath, targetChild) : child
-    );
-
-    return { ...tree, children: newChildren };
   }
 
   render() {
@@ -44,7 +26,7 @@ export class App extends React.Component {
               this.setState({ source: readFile(file.path) });
             }}
             onDirectoryClick={path =>
-              this.setState({ tree: this.updateTree(path, tree) })
+              this.setState({ tree: updateTree(path, tree) })
             }
           />
         </div>
