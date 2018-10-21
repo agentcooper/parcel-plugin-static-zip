@@ -46,6 +46,7 @@ function fetchZIP(url) {
 
 function directoryTree(fs, path, level = 0) {
   return {
+    path,
     level,
     name: basename(path) || ".",
     toggled: level < 2,
