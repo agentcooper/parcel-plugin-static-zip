@@ -15,9 +15,9 @@ function configureFS(config) {
       [key]: {
         fs: "ZipFS",
         options: {
-          zipData: Buffer.from(value),
-        },
-      },
+          zipData: Buffer.from(value)
+        }
+      }
     };
   }, {});
 
@@ -25,7 +25,7 @@ function configureFS(config) {
     configure(
       {
         fs: "MountableFileSystem",
-        options,
+        options
       },
       e => {
         if (e) {
@@ -35,7 +35,7 @@ function configureFS(config) {
         const fs = BFSRequire("fs");
 
         resolve(fs);
-      },
+      }
     );
   });
 }
@@ -46,6 +46,7 @@ function fetchZIP(url) {
 
 function directoryTree(fs, path, level = 0) {
   return {
+    level,
     name: basename(path) || ".",
     toggled: level < 2,
     children: fs.readdirSync(path).map(fileName => {
@@ -55,8 +56,8 @@ function directoryTree(fs, path, level = 0) {
         return directoryTree(fs, filePath, level + 1);
       }
 
-      return { name: fileName, path: filePath };
-    }),
+      return { name: fileName, path: filePath, level: level + 1 };
+    })
   };
 }
 
@@ -67,6 +68,6 @@ Promise.all([fetchZIP("./self.zip")])
 
     ReactDOM.render(
       <App tree={tree} readFile={path => fs.readFileSync(path, "utf-8")} />,
-      document.querySelector("#app"),
+      document.querySelector("#app")
     );
   });
