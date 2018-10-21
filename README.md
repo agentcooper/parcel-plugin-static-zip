@@ -29,4 +29,6 @@ Add config to your `package.json`:
 },
 ```
 
+`options` are [node-glob options](https://github.com/isaacs/node-glob#options).
+
 Whenever Parcel builds the project, `self.zip` will be available in the `dist`.
