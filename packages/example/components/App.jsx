@@ -1,18 +1,25 @@
 import * as React from "react";
 
 import { DirectoryTree } from "./DirectoryTree";
+import { updateTree } from "../tree";
+
+const toggle = tree => ({
+  ...tree,
+  toggled: !tree.toggled
+});
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       source: "",
+      tree: this.props.tree
     };
   }
 
   render() {
-    const { tree, readFile } = this.props;
-    const { source } = this.state;
+    const { readFile } = this.props;
+    const { source, tree } = this.state;
 
     return (
       <div className="container">
@@ -23,6 +30,11 @@ export class App extends React.Component {
               console.log(file);
               this.setState({ source: readFile(file.path) });
             }}
+            onDirectoryClick={path =>
+              this.setState({
+                tree: updateTree(tree, path, toggle)
+              })
+            }
           />
         </div>
         <div className="full-width full-height">
