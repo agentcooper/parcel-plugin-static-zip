@@ -1,22 +1,42 @@
-.hover:hover {
+.hover {
   cursor: pointer;
+}
+
+.hover:hover {
   background-color: papayawhip;
+}
+
+.directory-name::before,
+.file-name::before {
+  width: 1.2em;
+  margin: 0.2em;
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.directory-name::before {
+  content: url("arrow-empty.6302448c.svg");
+}
+
+.file-name::before {
+  content: url("circle.12ec74e6.svg");
+}
+
+.toggled::before {
+  content: url("arrow-filled.3f66a46d.svg");
 }
 
 .file-name,
 .directory-name {
   line-height: 1.5em;
-}
-
-.file-name::before {
-  content: "📃";
-  display: inline-block;
-  vertical-align: middle;
-  width: 1.2em;
-}
-
-.directory-inner {
-  margin-left: 0.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
 }
 body {
   font-family: "Courier New", Courier, monospace;
