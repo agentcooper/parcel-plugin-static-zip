@@ -1,5 +1,8 @@
-.hover:hover {
+.hover {
   cursor: pointer;
+}
+
+.hover:hover {
   background-color: papayawhip;
 }
 
@@ -27,24 +30,11 @@
   content: url("../svg/arrow-filled.svg");
 }
 
-/* .file-name::before {
-  content: "📃";
-  line-height: 1.5em;
-  display: inline-block;
-  vertical-align: middle;
-  width: 1.2em;
-} */
-
-.directory {
-}
-
-.directory-inner {
-}
-
 .file-name,
 .directory-name {
   line-height: 1.5em;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  user-select: none;
 }
