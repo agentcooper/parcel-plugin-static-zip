@@ -25,6 +25,14 @@ module.exports = bundler => {
           throw err;
         });
 
+        archive.on("warning", function(err) {
+          if (err.code === "ENOENT") {
+            console.warn(err);
+          } else {
+            throw err;
+          }
+        });
+
         output.on("close", function() {
           console.log(`${zipName}: ${archive.pointer()}`);
         });
@@ -33,7 +41,10 @@ module.exports = bundler => {
 
         const finalOptions = {
           ...options,
-          cwd: path.join(package.pkgdir, options.cwd),
+          cwd: path.join(
+            bundler.mainBundle.entryAsset.options.rootDir,
+            options.cwd,
+          ),
         };
 
         archive.glob(glob, finalOptions);
