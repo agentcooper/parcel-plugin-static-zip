@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-static-zip",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Provide archived local directory in the static build",
   "main": "index.js",
   "scripts": {
